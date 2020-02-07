@@ -1,4 +1,4 @@
-package com.justas.project.library;
+package com.justas.project.library.integration;
 
 import com.justas.project.library.model.playground.Playground;
 import com.justas.project.library.model.playground.PlaygroundType;
