@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class Carousel extends PlaygroundWithAttributes {
 
-    Carousel(int maxSlots) {
+    public Carousel(int maxSlots) {
         super(maxSlots);
     }
 

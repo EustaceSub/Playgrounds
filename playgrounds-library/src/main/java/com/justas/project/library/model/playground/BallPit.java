@@ -3,7 +3,7 @@ package com.justas.project.library.model.playground;
 
 public class BallPit extends PlaygroundWithAttributes {
 
-    BallPit(int maxSlots) {
+    public BallPit(int maxSlots) {
         super(maxSlots);
     }
 

@@ -24,12 +24,10 @@ public class PlaygroundServiceTest {
     public void playgroundsShouldBeLoadedCorrectly() {
         assertThat(playgrounds).isNotEmpty();
     }
-
     @Test
     public void ballPitsShouldBeLoadedCorrectly() {
         testPlaygroundSize(PlaygroundType.BALL_PIT,2);
     }
-
     @Test
     public void swingsShouldBeLoadedCorrectly() {
         testPlaygroundSize(PlaygroundType.DOUBLE_SWINGS,5);
