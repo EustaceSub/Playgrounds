@@ -1,8 +1,10 @@
 package com.justas.project.library.model.playground;
 
 
+import java.text.NumberFormat;
+
 public class Slide extends PlaygroundWithoutAttributes {
-     @Override
+    @Override
     public PlaygroundType getType() {
         return PlaygroundType.SLIDE;
     }

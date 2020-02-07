@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlaygroundLinesTest {
+public class PlaygroundAddRemoveChildrenTest {
 
     private Supplier<Child> generateChild = () -> Child.builder()
             .name(randomUUID().toString())
@@ -57,7 +57,7 @@ public class PlaygroundLinesTest {
     }
 
     @Test
-    public void shouldBeNOTAbleToAddThreeChildIntoDoubleSwings() {
+    public void shouldBeNOTAbleToAddTooManyChildsIntoDoubleSwings() {
         testWithWaitingQueue(new Carousel(3), 8);
     }
 

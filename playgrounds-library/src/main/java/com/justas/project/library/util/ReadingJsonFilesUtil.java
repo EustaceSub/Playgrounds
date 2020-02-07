@@ -2,6 +2,7 @@ package com.justas.project.library.util;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.experimental.UtilityClass;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -10,9 +11,10 @@ import java.net.URL;
 import static java.lang.String.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+@UtilityClass
 public class ReadingJsonFilesUtil {
 
-    public static JsonObject getJsonFromResource(String resourcePath) {
+    public JsonObject getJsonFromResource(String resourcePath) {
         ClassLoader classLoader = ReadingJsonFilesUtil.class.getClassLoader();
         URL resource = classLoader.getResource(resourcePath);
         if (resource == null) {
@@ -21,7 +23,7 @@ public class ReadingJsonFilesUtil {
         return getContentAsJson(resource);
     }
 
-    private static JsonObject getContentAsJson(URL resource) {
+    private JsonObject getContentAsJson(URL resource) {
         try {
             return JsonParser.parseString(IOUtils.toString(resource.openStream(), UTF_8)).getAsJsonObject();
         } catch (IOException e) {
