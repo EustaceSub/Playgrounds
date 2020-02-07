@@ -4,7 +4,9 @@ package com.justas.project.library.model.playground;
 import com.justas.project.library.model.Child;
 import com.justas.project.library.util.CalculationUtil;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Map;
 
 
 public interface Playground {
@@ -34,7 +36,7 @@ public interface Playground {
 
     Collection<Child> getCurrentQueue();
 
-    default double calculateUtilization() {
+    default double calculateAndReturnUtilization() {
         if (getMaxSlots() == 0) {
             return 100.00;
         }
@@ -43,5 +45,11 @@ public interface Playground {
         }
         double fullNumber = (1.0 * getCurrentKids().size() / getMaxSlots()) * 100;
         return CalculationUtil.processDouble((fullNumber));
+    }
+
+    Map<LocalDateTime, Double> getUtilizationSnapshots();
+
+    default void saveSnapshot() {
+        getUtilizationSnapshots().put(LocalDateTime.now(), calculateAndReturnUtilization());
     }
 }

@@ -47,4 +47,10 @@ public class PlaygroundService {
                 .mapToLong(p -> p.getCurrentKids().size())
                 .sum();
     }
+
+    public void saveUtilizationSnapshots() {
+        playgrounds.entrySet().stream()
+                .flatMap(e -> e.getValue().stream())
+                .forEach(Playground::saveSnapshot);
+    }
 }
