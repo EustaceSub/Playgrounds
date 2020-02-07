@@ -1,5 +1,6 @@
 package com.justas.project.library.unit;
 
+import com.justas.project.library.TestUtil;
 import com.justas.project.library.model.Child;
 import com.justas.project.library.model.playground.BallPit;
 import com.justas.project.library.model.playground.Carousel;
@@ -12,13 +13,7 @@ import java.util.function.Supplier;
 import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlaygroundAddRemoveChildrenTest {
-
-    private Supplier<Child> generateChild = () -> Child.builder()
-            .name(randomUUID().toString())
-            .age(10)
-            .ticketId(1)
-            .build();
+public class PlaygroundAddRemoveChildrenTest extends TestUtil {
 
     @Test
     public void shouldBeAbleToAddChildIntoSlide() {
@@ -28,7 +23,6 @@ public class PlaygroundAddRemoveChildrenTest {
     @Test
     public void shouldBeNOTAbleToAddTooManyChildsIntoSlide() {
         testWithWaitingQueue(new Slide(), 2);
-
     }
 
     @Test
