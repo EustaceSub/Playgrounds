@@ -1,7 +1,9 @@
 package com.justas.project.library.services;
 
 import com.google.gson.JsonObject;
+import com.justas.project.library.factory.UtilizationSnapshotDataFactory;
 import com.justas.project.library.mapper.PlaygroundMapper;
+import com.justas.project.library.model.UtilizationSnapshotData;
 import com.justas.project.library.model.playground.Playground;
 import com.justas.project.library.model.playground.PlaygroundType;
 import com.justas.project.library.util.ReadingJsonFilesUtil;
@@ -12,6 +14,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toMap;
@@ -52,5 +55,12 @@ public class PlaygroundService {
         playgrounds.entrySet().stream()
                 .flatMap(e -> e.getValue().stream())
                 .forEach(Playground::saveSnapshot);
+    }
+
+    public List<UtilizationSnapshotData> getUtilizationSnapshots() {
+        return playgrounds.entrySet().stream()
+                .flatMap(e -> e.getValue().stream())
+                .map(UtilizationSnapshotDataFactory::createUtilizationSnapshotDataFromPlayground)
+                .collect(Collectors.toList());
     }
 }

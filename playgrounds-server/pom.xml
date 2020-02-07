@@ -26,5 +26,10 @@
             <scope>test</scope>
             <version>${springboot.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.justas.project</groupId>
+            <artifactId>playgrounds-library</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

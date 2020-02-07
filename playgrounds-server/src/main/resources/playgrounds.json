@@ -1,0 +1,21 @@
+{
+  "DOUBLE_SWINGS": {
+    "amount": 5
+  },
+  "CAROUSEL": [
+    {
+      "max_spots": 20
+    }
+  ],
+  "SLIDE": {
+    "amount": 7
+  },
+  "BALL_PIT": [
+    {
+      "max_spots": 60
+    },
+    {
+      "max_spots": 20
+    }
+  ]
+}
