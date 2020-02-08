@@ -23,6 +23,7 @@ public class PlaygroundJob {
 
     @Scheduled(cron = "${saveSnapshotsCron}")
     public void test() {
-        System.out.println("Running...");
+        playgroundService.saveUtilizationSnapshots();
+        System.out.println("saving...");
     }
 }

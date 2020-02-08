@@ -8,6 +8,7 @@ public abstract class PlaygroundWithAttributes extends PlaygroundBasic {
     private final int maxSlots;
 
     PlaygroundWithAttributes(int maxSlots) {
+        super();
         this.maxSlots = maxSlots;
     }
 }

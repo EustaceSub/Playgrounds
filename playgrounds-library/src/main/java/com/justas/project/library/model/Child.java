@@ -1,10 +1,12 @@
 package com.justas.project.library.model;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Child {
     private String name;
     private int age;

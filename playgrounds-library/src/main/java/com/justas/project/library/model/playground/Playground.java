@@ -15,6 +15,8 @@ public interface Playground {
 
     int getMaxSlots();
 
+    int getId();
+
     default boolean addChildIntoPlayground(Child child) {
         if (getMaxSlots() > getCurrentKids().size()) {
             return getCurrentKids().add(child);

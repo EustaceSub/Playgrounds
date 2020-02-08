@@ -10,10 +10,7 @@ import com.justas.project.library.util.ReadingJsonFilesUtil;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -62,5 +59,14 @@ public class PlaygroundService {
                 .flatMap(e -> e.getValue().stream())
                 .map(UtilizationSnapshotDataFactory::createUtilizationSnapshotDataFromPlayground)
                 .collect(Collectors.toList());
+    }
+
+
+    public Optional<Playground> findPlaygroundById(int playgroundId) {
+        return playgrounds.entrySet().stream()
+                .flatMap(e -> e.getValue().stream())
+                .filter(p -> p.getId() == playgroundId)
+                .findFirst();
+
     }
 }
