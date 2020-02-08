@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class IdGenerator {
     private AtomicInteger playgroundIdGenerator = new AtomicInteger(0);
     private AtomicInteger ticketIdGenerator = new AtomicInteger(0);
+    private AtomicInteger childIdGenerator = new AtomicInteger(0);
 
     public int generatePlaygroundId() {
         return playgroundIdGenerator.incrementAndGet();
@@ -15,5 +16,9 @@ public class IdGenerator {
 
     public int generateTicketId() {
         return ticketIdGenerator.incrementAndGet();
+    }
+
+    public int generateChildId() {
+        return childIdGenerator.incrementAndGet();
     }
 }
