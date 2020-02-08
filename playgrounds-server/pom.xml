@@ -12,6 +12,8 @@
 
     <properties>
         <springboot.version>2.2.4.RELEASE</springboot.version>
+        <swagger.version>2.9.2</swagger.version>
+
     </properties>
 
     <dependencies>
@@ -25,6 +27,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.justas.project</groupId>
+            <artifactId>playgrounds-library</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 </project>

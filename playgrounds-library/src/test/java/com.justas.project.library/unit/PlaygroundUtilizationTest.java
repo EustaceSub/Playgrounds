@@ -86,7 +86,7 @@ public class PlaygroundUtilizationTest extends TestUtil {
     @Test
     public void testPlaygroundUtilization() {
         addChildren.accept(childrenToAdd);
-        assertThat(playground.calculateUtilization()).isEqualTo(expectedUtility);
+        assertThat(playground.calculateAndReturnUtilization()).isEqualTo(expectedUtility);
     }
 
 
