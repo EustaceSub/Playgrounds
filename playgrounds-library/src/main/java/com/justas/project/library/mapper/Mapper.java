@@ -12,5 +12,5 @@ public interface Mapper<T> {
      * @param jsonObject
      * @return - collection of mapped objects
      */
-    public Collection<T> mapJsonObject(JsonObject jsonObject);
+    Collection<T> mapJsonObject(JsonObject jsonObject);
 }

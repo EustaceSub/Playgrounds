@@ -23,7 +23,7 @@ public class HistoryTest {
         assertThat(history.getPlaygroundId()).isEqualTo(playgroundId);
         assertThat(history.getStartTime().getHour()).isEqualTo(LocalDateTime.now().getHour());
         assertThat(history.getEndTime()).isNull();
-        assertThat(history.getStaytime()).isNull();
+        assertThat(history.getStayDuration()).isNull();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class HistoryTest {
         History history = historyService.getHistoryList().get(0);
         testCommonInfoAboutHistory(history, childId, playgroundId);
         assertThat(history.getEndTime().getHour()).isEqualTo(LocalDateTime.now().getHour());
-        assertThat(history.getStaytime()).isPositive();
+        assertThat(history.getStayDuration()).isPositive();
     }
 
     private void testCommonInfoAboutHistory(History history,

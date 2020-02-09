@@ -55,5 +55,4 @@ public class PlaygroundMapper implements Mapper<Playground> {
         }
         return playgrounds;
     }
-
 }

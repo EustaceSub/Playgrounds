@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+This class should be used to do any actions with History;
+ */
 public class HistoryService {
     @Getter
     private final List<History> historyList = new ArrayList<>();
@@ -36,9 +39,9 @@ public class HistoryService {
     public void childLeftPlayground(int childId, int playgroundId) {
         History joinedHistory = findJoiningAndNotLeavingHistory(childId, playgroundId);
         LocalDateTime leftTime = LocalDateTime.now();
-        Duration stayTime = Duration.between( joinedHistory.getStartTime(),leftTime);
+        Duration stayTime = Duration.between(joinedHistory.getStartTime(), leftTime);
         joinedHistory.setEndTime(leftTime);
-        joinedHistory.setStaytime(stayTime);
+        joinedHistory.setStayDuration(stayTime);
     }
 
     /**

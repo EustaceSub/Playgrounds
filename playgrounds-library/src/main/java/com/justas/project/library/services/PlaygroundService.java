@@ -17,6 +17,9 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toMap;
 
 @Log
+/*
+This class should be used to do any actions with Playgrounds;
+ */
 public class PlaygroundService {
     private PlaygroundMapper playgroundMapper = new PlaygroundMapper();
     @Getter
@@ -37,10 +40,20 @@ public class PlaygroundService {
         playgroundMapper.mapJsonObject(jsonObject).forEach(this::registerPlayground);
     }
 
+    /**
+     * Saves new Playground
+     *
+     * @param playground - playground we want to save.
+     */
     public void registerPlayground(Playground playground) {
         playgrounds.get(playground.getType()).add(playground);
     }
 
+    /**
+     * Calculates how much children are using playgrounds at this very moment.
+     *
+     * @return number of children in playgrounds.
+     */
     public long calculateVisitorsCount() {
         return playgrounds.entrySet().stream()
                 .flatMap(e -> e.getValue().stream())
@@ -48,11 +61,13 @@ public class PlaygroundService {
                 .sum();
     }
 
+
     public void saveUtilizationSnapshots() {
         playgrounds.entrySet().stream()
                 .flatMap(e -> e.getValue().stream())
                 .forEach(Playground::saveSnapshot);
     }
+
 
     public List<UtilizationSnapshotData> getUtilizationSnapshots() {
         return playgrounds.entrySet().stream()

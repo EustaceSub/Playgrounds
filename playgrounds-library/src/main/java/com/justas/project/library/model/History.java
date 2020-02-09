@@ -18,6 +18,6 @@ public class History {
     @Setter
     private LocalDateTime endTime;
     @Setter
-    private Duration staytime;
+    private Duration stayDuration;
 
 }
