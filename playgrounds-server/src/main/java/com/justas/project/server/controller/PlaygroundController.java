@@ -1,12 +1,10 @@
 package com.justas.project.server.controller;
 
-import com.justas.project.library.model.Child;
 import com.justas.project.library.model.UtilizationSnapshotData;
 import com.justas.project.library.model.playground.Playground;
 import com.justas.project.library.model.playground.PlaygroundType;
-import com.justas.project.library.services.HistoryService;
-import com.justas.project.library.services.PlaygroundService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.justas.project.server.dto.ChildDTO;
+import com.justas.project.server.services.PlayService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,49 +15,30 @@ import java.util.Map;
 @RequestMapping("playgrounds")
 public class PlaygroundController {
 
-    private final PlaygroundService playgroundService;
-    private final HistoryService historyService;
+    private final PlayService playService;
 
-    @Autowired
-    public PlaygroundController(PlaygroundService playgroundService, HistoryService historyService) {
-        this.playgroundService = playgroundService;
-        this.historyService = historyService;
+    public PlaygroundController(PlayService playService) {
+        this.playService = playService;
     }
 
     @GetMapping
     public Map<PlaygroundType, List<Playground>> getPlaygrounds() {
-        return playgroundService.getPlaygrounds();
+        return playService.getPlaygrounds();
     }
 
     @GetMapping(value = "/snapshots")
     public List<UtilizationSnapshotData> getSnapshots() {
-        return playgroundService.getUtilizationSnapshots();
+        return playService.getSnapshots();
     }
 
     @PostMapping(value = {"/{id}/child"})
-    public ResponseEntity<String> addChildIntoPlayground(@PathVariable int id, @RequestBody Child child) {
-        Playground playground = playgroundService.findPlaygroundById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Playground with given id was not found..."));
-        boolean isAdded = playground.addChildIntoPlayground(child);
-        if (isAdded) {
-            historyService.childJoinedIntoPlayground(child.getId(), id);
-            return ResponseEntity.ok("Child was added successfully");
-        } else {
-            return ResponseEntity.ok("Child was NOT added.Playground is full.Child is added into queue");
-        }
+    public ResponseEntity<String> addChildIntoPlayground(@PathVariable int id, @RequestBody ChildDTO childDTO) {
+        return playService.addChildIntoPlayground(id, childDTO);
     }
 
-    @DeleteMapping(value = {"/{id}/child"})
-    public ResponseEntity<String> deleteChildFromPlayground(@PathVariable int id, @RequestBody Child child) {
-        Playground playground = playgroundService.findPlaygroundById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Playground with given id was not found..."));
-        boolean isRemoved = playground.removeChildFromPlayground(child);
-        if (isRemoved) {
-            historyService.childLeftPlayground(child.getId(), id);
-            return ResponseEntity.ok("Child was removed successfully");
-        } else {
-            throw new RuntimeException("Child was not removed from Playground.Please investigate..");
-        }
+    @DeleteMapping(value = {"/{id}/child/{childId}"})
+    public ResponseEntity<String> deleteChildFromPlayground(@PathVariable int id, @PathVariable int childId) {
+        return playService.deleteChildFromPlayground(id, childId);
     }
 
 

@@ -24,8 +24,8 @@ public class PlaygroundServiceCalculateChildrenTest extends TestUtil {
         Playground swings = new DoubleSwings();
         playgroundService.registerPlayground(swings);
 
-        swings.addChildIntoPlayground(generateChild.get());
-        swings.addChildIntoPlayground(generateChild.get());
+        swings.addChildIntoPlayground(generateCommonChild.get());
+        swings.addChildIntoPlayground(generateCommonChild.get());
         assertThat(playgroundService.calculateVisitorsCount()).isEqualTo(2);
     }
 
@@ -37,8 +37,8 @@ public class PlaygroundServiceCalculateChildrenTest extends TestUtil {
         playgroundService.registerPlayground(swings1);
         playgroundService.registerPlayground(swings2);
 
-        swings1.addChildIntoPlayground(generateChild.get());
-        swings2.addChildIntoPlayground(generateChild.get());
+        swings1.addChildIntoPlayground(generateCommonChild.get());
+        swings2.addChildIntoPlayground(generateCommonChild.get());
         assertThat(playgroundService.calculateVisitorsCount()).isEqualTo(2);
     }
 
@@ -55,10 +55,10 @@ public class PlaygroundServiceCalculateChildrenTest extends TestUtil {
         playgroundService.registerPlayground(swings4);
 
         for (int i = 0; i < 1000; i++) {
-            swings1.addChildIntoPlayground(generateChild.get());
-            swings2.addChildIntoPlayground(generateChild.get());
-            swings3.addChildIntoPlayground(generateChild.get());
-            swings4.addChildIntoPlayground(generateChild.get());
+            swings1.addChildIntoPlayground(generateCommonChild.get());
+            swings2.addChildIntoPlayground(generateCommonChild.get());
+            swings3.addChildIntoPlayground(generateCommonChild.get());
+            swings4.addChildIntoPlayground(generateCommonChild.get());
         }
         assertThat(playgroundService.calculateVisitorsCount()).isEqualTo(1503);
     }

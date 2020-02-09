@@ -1,16 +1,12 @@
 package com.justas.project.library.unit;
 
 import com.justas.project.library.TestUtil;
-import com.justas.project.library.model.Child;
 import com.justas.project.library.model.playground.BallPit;
 import com.justas.project.library.model.playground.Carousel;
 import com.justas.project.library.model.playground.Playground;
 import com.justas.project.library.model.playground.Slide;
 import org.junit.Test;
 
-import java.util.function.Supplier;
-
-import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlaygroundAddRemoveChildrenTest extends TestUtil {
@@ -57,7 +53,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
 
     private void testWithoutWaitingQueue(Playground playground, int slots) {
         for (int i = 0; i < slots; i++) {
-            boolean isAdded1 = playground.addChildIntoPlayground(generateChild.get());
+            boolean isAdded1 = playground.addChildIntoPlayground(generateCommonChild.get());
             assertThat(isAdded1).isTrue();
 
         }
@@ -68,7 +64,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
 
     private void testWithWaitingQueue(Playground playground, int howManyToAdd) {
         for (int i = 0; i < howManyToAdd; i++) {
-            playground.addChildIntoPlayground(generateChild.get());
+            playground.addChildIntoPlayground(generateCommonChild.get());
 
         }
         assertThat(playground.getCurrentKids()).isNotEmpty();

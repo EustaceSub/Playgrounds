@@ -1,19 +1,46 @@
 package com.justas.project.library.services;
 
+import com.justas.project.library.generator.IdGenerator;
 import com.justas.project.library.model.Ticket;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
+/*
+This class should be used to do any actions with Tickets;
+ */
 public class TicketService {
-    private List<Ticket> simpleTickets = new ArrayList<>();
-    private AtomicInteger id = new AtomicInteger(0);
+    private List<Ticket> tickets = new ArrayList<>();
 
-    public int generateSimpleTicket() {
-        Ticket ticket = new Ticket(id.incrementAndGet());
-        simpleTickets.add(ticket);
+    /**
+     * Creates and saves new Simple ticket
+     *
+     * @return - id of new created simple ticket
+     */
+    public int generateSimpleTicketId() {
+        Ticket ticket = new Ticket(IdGenerator.generateTicketId(), false);
+        tickets.add(ticket);
         return ticket.getTicketId();
+    }
+
+    /**
+     * Generates and saves new VIP ticket
+     *
+     * @return - id of new created VIP ticket
+     */
+    public int generateVipTicket() {
+        Ticket ticket = new Ticket(IdGenerator.generateTicketId(), true);
+        tickets.add(ticket);
+        return ticket.getTicketId();
+    }
+
+    /**
+     * Checks if ticket belongs to VIP
+     *
+     * @param ticketId - ticket id
+     * @return - true if ticket is created as VIP
+     */
+    public boolean isTicketVIP(int ticketId) {
+        return tickets.stream().anyMatch(t -> t.getTicketId() == ticketId && t.isVip());
     }
 }

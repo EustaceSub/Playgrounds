@@ -1,10 +1,13 @@
 package com.justas.project.library.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode
 public class Ticket {
     private int ticketId;
+    private boolean vip;
 }

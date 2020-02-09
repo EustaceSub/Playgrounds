@@ -79,7 +79,7 @@ public class PlaygroundUtilizationTest extends TestUtil {
 
     private IntConsumer addChildren = (n) -> {
         for (int i = 0; i < n; i++) {
-            playground.addChildIntoPlayground(generateChild.get());
+            playground.addChildIntoPlayground(generateCommonChild.get());
         }
     };
 
