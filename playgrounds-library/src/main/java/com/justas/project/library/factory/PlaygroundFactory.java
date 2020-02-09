@@ -26,7 +26,7 @@ public class PlaygroundFactory {
      *
      * @param playgroundType - playground we want to create type.
      * @param maxSlots       - playground param, that says how much children can Playground contain.
-     * @return
+     * @return - new Playground with custom params
      */
     public static Playground createPlaygroundWithParams(PlaygroundType playgroundType, int maxSlots) {
         switch (playgroundType) {

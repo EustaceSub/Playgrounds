@@ -24,7 +24,7 @@ public class PlaygroundJob {
     }
 
     @Scheduled(cron = "${saveSnapshotsCron}")
-    public void test() {
+    public void loadPlaygroundJob() {
         playgroundService.saveUtilizationSnapshots();
         log.info("saving utilization...");
     }
