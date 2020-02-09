@@ -16,7 +16,12 @@ import static java.util.stream.Collectors.toList;
 
 
 public class PlaygroundMapper implements Mapper<Playground> {
-
+    /**
+     * Parses JsonObject into wanted Collection.
+     *
+     * @param playgrounds - json information ABOUT ALL playgrounds we have in file
+     * @return - playgrounds we create from json.
+     */
     @Override
     public Collection<Playground> mapJsonObject(JsonObject playgrounds) {
         return Stream.of(PlaygroundType.values())

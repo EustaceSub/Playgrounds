@@ -77,7 +77,7 @@ public class PlaygroundUtilizationTest extends TestUtil {
     @Parameter(2)
     public double expectedUtility;
 
-    private IntConsumer addChildren = (n) -> {
+    private final IntConsumer addChildren = (n) -> {
         for (int i = 0; i < n; i++) {
             playground.addChildIntoPlayground(generateCommonChild.get());
         }

@@ -6,19 +6,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @UtilityClass
 public class IdGenerator {
-    private AtomicInteger playgroundIdGenerator = new AtomicInteger(0);
-    private AtomicInteger ticketIdGenerator = new AtomicInteger(0);
-    private AtomicInteger childIdGenerator = new AtomicInteger(0);
+    private final AtomicInteger PLAYGROUND_ID_GENERATOR = new AtomicInteger(0);
+    private final AtomicInteger TICKET_ID_GENERATOR = new AtomicInteger(0);
+    private final AtomicInteger CHILD_ID_GENERATOR = new AtomicInteger(0);
 
     public int generatePlaygroundId() {
-        return playgroundIdGenerator.incrementAndGet();
+        return PLAYGROUND_ID_GENERATOR.incrementAndGet();
     }
 
+    /**
+     * Generates VIP or Simple ticket ID
+     *
+     * @return - id of new created ticket;
+     */
     public int generateTicketId() {
-        return ticketIdGenerator.incrementAndGet();
+        return TICKET_ID_GENERATOR.incrementAndGet();
     }
 
     public int generateChildId() {
-        return childIdGenerator.incrementAndGet();
+        return CHILD_ID_GENERATOR.incrementAndGet();
     }
 }

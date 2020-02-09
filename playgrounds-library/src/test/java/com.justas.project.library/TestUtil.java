@@ -10,20 +10,20 @@ import java.util.function.Supplier;
 import static java.util.UUID.randomUUID;
 
 public class TestUtil {
-    private TicketService ticketService = new TicketService();
+    private final TicketService ticketService = new TicketService();
 
-    private Function<Ticket, Child> generateChild = (ticket) ->
+    private final Function<Ticket, Child> generateChild = (ticket) ->
             Child.builder()
                     .name(randomUUID().toString())
                     .age(10)
                     .ticket(ticket)
                     .build();
 
-    protected Supplier<Child> generateCommonChild = () -> {
+    protected final Supplier<Child> generateCommonChild = () -> {
         int ticketId = ticketService.generateSimpleTicketId();
         return generateChild.apply(new Ticket(ticketId, false));
     };
-    protected Supplier<Child> generateVIPChild = () -> {
+    protected final Supplier<Child> generateVIPChild = () -> {
         int ticketId = ticketService.generateVipTicket();
         return generateChild.apply(new Ticket(ticketId, true));
     };

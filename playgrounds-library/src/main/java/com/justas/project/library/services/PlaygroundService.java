@@ -16,14 +16,14 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toMap;
 
-@Log
 /*
 This class should be used to do any actions with Playgrounds;
  */
+@Log
 public class PlaygroundService {
-    private PlaygroundMapper playgroundMapper = new PlaygroundMapper();
+    private final PlaygroundMapper playgroundMapper = new PlaygroundMapper();
     @Getter
-    private Map<PlaygroundType, List<Playground>> playgrounds = Stream.of(
+    private final Map<PlaygroundType, List<Playground>> playgrounds = Stream.of(
             new AbstractMap.SimpleEntry<>(PlaygroundType.BALL_PIT, new ArrayList<Playground>()),
             new AbstractMap.SimpleEntry<>(PlaygroundType.CAROUSEL, new ArrayList<Playground>()),
             new AbstractMap.SimpleEntry<>(PlaygroundType.SLIDE, new ArrayList<Playground>()),
@@ -61,7 +61,6 @@ public class PlaygroundService {
                 .sum();
     }
 
-
     public void saveUtilizationSnapshots() {
         playgrounds.entrySet().stream()
                 .flatMap(e -> e.getValue().stream())
@@ -82,6 +81,5 @@ public class PlaygroundService {
                 .flatMap(e -> e.getValue().stream())
                 .filter(p -> p.getId() == playgroundId)
                 .findFirst();
-
     }
 }

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlaygroundServiceLoadTest {
     private static Map<PlaygroundType, List<Playground>> playgrounds;
-    private static PlaygroundService playgroundService = new PlaygroundService();
+    private static final PlaygroundService playgroundService = new PlaygroundService();
 
     @BeforeClass
     public static void setUpPlaygroundService() {

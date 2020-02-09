@@ -2,6 +2,7 @@ package com.justas.project.library.services;
 
 import com.justas.project.library.generator.IdGenerator;
 import com.justas.project.library.model.Ticket;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 This class should be used to do any actions with Tickets;
  */
 public class TicketService {
-    private List<Ticket> tickets = new ArrayList<>();
+    @Getter
+    private final List<Ticket> tickets = new ArrayList<>();
 
     /**
      * Creates and saves new Simple ticket

@@ -19,6 +19,13 @@ public interface Playground {
 
     int getId();
 
+    Collection<Child> getCurrentKids();
+
+    LinkedList<Child> getCurrentQueue();
+
+    Map<LocalDateTime, Double> getUtilizationSnapshots();
+
+
     default boolean addChildIntoPlayground(Child child) {
         if (getMaxSlots() > getCurrentKids().size()) {
             return getCurrentKids().add(child);
@@ -33,11 +40,18 @@ public interface Playground {
         return child.filter(child1 -> getCurrentKids().remove(child1)).isPresent();
     }
 
-    default boolean addIntoQueue(Child child) {
-        return getCurrentQueue().add(child);
+    default void addIntoQueue(Child child) {
+        getCurrentQueue().add(child);
     }
 
-    default void addVipIntoQueue(Child child, int skipBy) {
+    /**
+     * Adds VIP child into queue, with skipping feature.
+     *
+     * @param child  - child to add
+     * @param skipBy - how many non-VIP users we want to skip
+     * @return - position where child is in the queue.
+     */
+    default int addVipIntoQueue(Child child, int skipBy) {
         /*
        maintain a balance of max 1 skip for 3 normal entries ex. if there are 5 waiting,
        and 2 vips come, one would get into front of line,
@@ -55,21 +69,23 @@ public interface Playground {
                 .reduce((first, second) -> second);
         if (!lastVIP.isPresent()) {
             getCurrentQueue().add(putInto, child);
+            return putInto;
         } else {
             int lastVipPosition = getCurrentQueue().indexOf(lastVIP.get());
             if (currentQueueSize - skipBy - balance > 0) {
-                getCurrentQueue().add(currentQueueSize - skipBy, child);
+                int position = currentQueueSize - skipBy;
+                getCurrentQueue().add(position, child);
+                return position;
             } else if (lastVipPosition + balance < currentQueueSize) {
-                getCurrentQueue().add(lastVipPosition + balance, child);
+                int position = lastVipPosition + balance;
+                getCurrentQueue().add(position, child);
+                return position;
             } else {
                 getCurrentQueue().add(child);
+                return getCurrentQueue().size();
             }
         }
     }
-
-    Collection<Child> getCurrentKids();
-
-    LinkedList<Child> getCurrentQueue();
 
     default double calculateAndReturnUtilization() {
         if (getMaxSlots() == 0) {
@@ -82,7 +98,6 @@ public interface Playground {
         return CalculationUtil.processDouble((fullNumber));
     }
 
-    Map<LocalDateTime, Double> getUtilizationSnapshots();
 
     default void saveSnapshot() {
         getUtilizationSnapshots().put(LocalDateTime.now(), calculateAndReturnUtilization());

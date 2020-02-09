@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlaygroundServiceCalculateChildrenTest extends TestUtil {
-    private PlaygroundService playgroundService = new PlaygroundService();
+    private final PlaygroundService playgroundService = new PlaygroundService();
 
     @Test
     public void calculateMultipleEmptyPlaygroundChildren() {

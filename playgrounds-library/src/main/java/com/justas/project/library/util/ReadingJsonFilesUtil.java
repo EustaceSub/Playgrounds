@@ -11,9 +11,17 @@ import java.net.URL;
 import static java.lang.String.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/*
+This class should be used to get JSON objects from json files.
+ */
 @UtilityClass
 public class ReadingJsonFilesUtil {
-
+    /**
+     * Creates Json path from resource file.
+     *
+     * @param resourcePath - path of resource
+     * @return - content of resource as {@link JsonObject}
+     */
     public JsonObject getJsonFromResource(String resourcePath) {
         ClassLoader classLoader = ReadingJsonFilesUtil.class.getClassLoader();
         URL resource = classLoader.getResource(resourcePath);

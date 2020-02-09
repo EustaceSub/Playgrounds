@@ -21,25 +21,36 @@ public class PlaygroundController {
         this.playService = playService;
     }
 
+    @GetMapping(value = "/{playgroundId}")
+    public Playground getPlayground(@PathVariable int playgroundId) {
+        return playService.findPlaygroundById(playgroundId);
+    }
+
     @GetMapping
     public Map<PlaygroundType, List<Playground>> getPlaygrounds() {
         return playService.getPlaygrounds();
     }
+
 
     @GetMapping(value = "/snapshots")
     public List<UtilizationSnapshotData> getSnapshots() {
         return playService.getSnapshots();
     }
 
-    @PostMapping(value = {"/{id}/child"})
-    public ResponseEntity<String> addChildIntoPlayground(@PathVariable int id, @RequestBody ChildDTO childDTO) {
-        return playService.addChildIntoPlayground(id, childDTO);
+    @PostMapping(value = {"/{playgroundId}/child"})
+    public ResponseEntity<String> addChildIntoPlayground(@PathVariable int playgroundId, @RequestBody ChildDTO childDTO) {
+        return playService.addChildIntoPlayground(playgroundId, childDTO);
+    }
+
+    @PostMapping(value = {"/{id}/child/vip/{skipBy}"})
+    public ResponseEntity<String> addChildIntoPlaygroundVIPQueueWithSkipping(@PathVariable int id,
+                                                                             @PathVariable int skipBy,
+                                                                             @RequestBody ChildDTO childDTO) {
+        return playService.addChildIntoQUEUEVip(id, skipBy, childDTO);
     }
 
     @DeleteMapping(value = {"/{id}/child/{childId}"})
     public ResponseEntity<String> deleteChildFromPlayground(@PathVariable int id, @PathVariable int childId) {
         return playService.deleteChildFromPlayground(id, childId);
     }
-
-
 }

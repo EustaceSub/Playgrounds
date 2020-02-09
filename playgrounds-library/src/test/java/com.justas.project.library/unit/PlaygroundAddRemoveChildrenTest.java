@@ -17,7 +17,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
     }
 
     @Test
-    public void shouldBeNOTAbleToAddTooManyChildsIntoSlide() {
+    public void shouldBeNOTAbleToAddTooManyChildrenIntoSlide() {
         testWithWaitingQueue(new Slide(), 2);
     }
 
@@ -27,7 +27,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
     }
 
     @Test
-    public void shouldBeNOTAbleToAddTooManyChildsIntoBallPit() {
+    public void shouldBeNOTAbleToAddTooManyChildrenIntoBallPit() {
         testWithWaitingQueue(new BallPit(1), 2);
     }
 
@@ -37,7 +37,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
     }
 
     @Test
-    public void shouldBeNOTAbleToAddTooManyChildsIntoCarousel() {
+    public void shouldBeNOTAbleToAddTooManyChildrenIntoCarousel() {
         testWithWaitingQueue(new BallPit(1), 2);
     }
 
@@ -47,7 +47,7 @@ public class PlaygroundAddRemoveChildrenTest extends TestUtil {
     }
 
     @Test
-    public void shouldBeNOTAbleToAddTooManyChildsIntoDoubleSwings() {
+    public void shouldBeNOTAbleToAddTooManyChildrenIntoDoubleSwings() {
         testWithWaitingQueue(new Carousel(3), 8);
     }
 

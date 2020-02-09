@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.String.format;
+
 @Service
 public class PlayService {
     private final PlaygroundService playgroundService;
@@ -39,8 +41,7 @@ public class PlayService {
     }
 
     public ResponseEntity<String> addChildIntoPlayground(int id, ChildDTO childDTO) {
-        Playground playground = playgroundService.findPlaygroundById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Playground with given id was not found..."));
+        Playground playground = findPlaygroundById(id);
         boolean isTicketVIP = ticketService.isTicketVIP(childDTO.getTicketId());
         Child child = mapChildFromDTO(childDTO, isTicketVIP);
         boolean isAdded = playground.addChildIntoPlayground(child);
@@ -50,6 +51,19 @@ public class PlayService {
         } else {
             return ResponseEntity.ok("Child was NOT added.Playground is full.Child is added into queue");
         }
+    }
+
+    public ResponseEntity<String> addChildIntoQUEUEVip(int id, int skipBy, ChildDTO childDTO) {
+        Playground playground = findPlaygroundById(id);
+        boolean isTicketVIP = ticketService.isTicketVIP(childDTO.getTicketId());
+        Child child = mapChildFromDTO(childDTO, isTicketVIP);
+        int position = playground.addVipIntoQueue(child, skipBy);
+        return ResponseEntity.ok(format("Kid's position in queue is: %s ", position));
+    }
+
+    public Playground findPlaygroundById(int id) {
+        return playgroundService.findPlaygroundById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Playground with given id was not found..."));
     }
 
     public ResponseEntity<String> deleteChildFromPlayground(int id, int childId) {
